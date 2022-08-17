@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { client, urlFor } from '../../lib/client';
 import { AiOutlineMinus, AiOutlinePlus, AiFillStar, AiOutlineStar} from 'react-icons/ai';
 import { Product } from '../../components';
-import { useStateContext } from '../../context/stateContext';
+import { useStateContext } from '../../context/StateContext';
+
 const ProductDetails = ({ product, products }) => {
     const {image, name, details, price} = product;
     const [index, setIndex] = useState (0);
-    const {decQty, incQty, qty, onAdd } = useStateContext();
+    const {decQty, incQty, qty, onAdd, setShowCart } = useStateContext();
 
     return (
     <div>
@@ -23,8 +24,7 @@ const ProductDetails = ({ product, products }) => {
                             key={i}
                             src={urlFor(item)}
                             className= {i === index ? 'small-image selected-image' : 'small-image'}
-                            onMouseEnter={() => setIndex(i)
-                            } 
+                            onMouseEnter={() => setIndex(i)} 
                         />
                     ))};
                 </div>
@@ -47,20 +47,20 @@ const ProductDetails = ({ product, products }) => {
                     <div className="quantity">
                         <h3>Quantity: </h3>
                         <p className="quantity-desc">
-                            <spam className="minus"
+                            <span className="minus"
                                 onClick={decQty}><AiOutlineMinus />
-                            </spam>
-                            <spam className="num"
-                                onClick="">{qty}
-                            </spam>
-                            <spam className="plus"
+                            </span>
+                            <span className="num"
+                                >{qty}
+                            </span>
+                            <span className="plus"
                                 onClick={incQty}><AiOutlinePlus />
-                            </spam>
+                            </span>
                         </p>
                     </div>
                     <div className="buttons">
                         <button type="button"className="add-to-cart" onClick={()=> onAdd(product, qty)}>Add to cart</button>
-                        <button type="button"className="buy-now" onClick="">Buy Now</button>
+                        <button type="button"className="buy-now" >Buy Now</button>
                     </div>
                 </div>
         </div>

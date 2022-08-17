@@ -1,27 +1,31 @@
-
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
+
     try {
       const params = {
         submit_type: 'pay',
         mode: 'payment',
         payment_method_types: ['card'],
         billing_address_collection: 'auto',
+        shipping_address_collection: {
+          allowed_countries: ['US', 'AU'],
+        },
         shipping_options: [
-          {shiping_rate: 'shr_1LXJ4JGh0oCiNs5P9zPHPqle' },
-          {shiping_rate: 'shr_1LXJADGh0oCiNs5PaXtWLYBb' },
+          {shipping_rate: 'shr_1LXJ4JGh0oCiNs5P9zPHPqle' },
+          {shipping_rate: 'shr_1LXJADGh0oCiNs5PaXtWLYBb' },
         ],
         line_items: req.body.map((item) => {
           const img = item.image[0].asset._ref;
-          const newImage = img.replace('image-', 'https://cdn.sanity.io/images/vfxfwnaw/production/').replace('-webp', '.webp');
+          const newImage = img.replace('image-', 'https://cdn.sanity.io/images/qm2p9trq/production/').replace('-webp', '.webp');
 
           return {
             price_data: { 
-              currency: 'usd',
+              currency: 'aud',
               product_data: { 
                 name: item.name,
                 images: [newImage],

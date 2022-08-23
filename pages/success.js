@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import Link from 'next/link';
 import { BsBagCheckFill } from 'react-icons/bs';
 import { runFireworks } from '../lib/utils';
@@ -6,7 +6,7 @@ import { useStateContext } from '../context/StateContext';
 
 const success = () => {
     const {setCartItems, setTotalPrice, setTotalQuantities } = useStateContext();
-    const [order, setOrder] = useState(null);
+    
 
 useEffect(() =>{
     localStorage.clear();

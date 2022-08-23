@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link';
 import  {urlFor}  from '../lib/client';
-import Image from 'next/image';
+
 
 const FooterBanner = ({footerBanner: { discount, largeText1, largeText2, saleTime, desc, smallText, midText, product, buttonText, image}}) => {
   return (
@@ -21,7 +21,7 @@ const FooterBanner = ({footerBanner: { discount, largeText1, largeText2, saleTim
             <button type="button">{buttonText}</button>
           </Link>
         </div>
-        <Image src={urlFor(image)}
+        <img src={urlFor(image)}
         className="footer-banner-image" 
         />
       </div>

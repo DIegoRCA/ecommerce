@@ -22,11 +22,15 @@ const onAdd = ( product, quantity) => {
         if(checkProductInCart){
     
             const updatedCartItems = cartItems.map((cartProduct)=>{
-                if(cartProduct._id === product._id) return{
-                    ...cartProduct,
-                    quantity: cartProduct.quantity + quantity
+                if (cartProduct._id === product._id) {
+                    return {
+                        ...cartProduct,
+                        quantity: cartProduct.quantity + quantity,
+                    };
+                } else {
+                    return cartProduct;
                 }
-            })
+            });
 
             setCartItems(updatedCartItems);
         } else{

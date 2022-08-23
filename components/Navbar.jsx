@@ -10,7 +10,7 @@ import { useStateContext } from '../context/StateContext';
   return (
     <div className='navbar-container'>
       <p className='logo'>
-        <Link href="/"> DRC Headphone</Link>  
+        <Link href="/"> DRC Store</Link>  
       </p>
 
       <button type="button" className="cart-icon" onClick={() => setShowCart(true)}>
